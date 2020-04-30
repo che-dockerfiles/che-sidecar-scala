@@ -16,7 +16,7 @@ ENV SBT_VERSION="1.3.10" \
 RUN apk --no-cache add curl bash && \
     curl -Ls https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > /usr/local/bin/sbt && \
     chmod 0755 /usr/local/bin/sbt && \
-    sbt -sbt-version $SBT_VERSION -sbt-create && \
+    sbt -sbt-version $SBT_VERSION -sbt-create about && \
     rm -Rf ./* && \
     curl -Ls https://raw.githubusercontent.com/coursier/coursier/gh-pages/coursier > /usr/local/bin/coursier && \
     chmod 0755 /usr/local/bin/coursier && \
