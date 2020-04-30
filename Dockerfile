@@ -10,8 +10,8 @@
 
 FROM quay.io/eclipse/che-sidecar-java:11
 
-ENV SBT_VERSION 1.3.10 \
-    METALS_VERSION 0.8.4
+ENV SBT_VERSION="1.3.10" \
+    METALS_VERSION="0.8.4"
 
 RUN apk --no-cache add curl bash && \
     curl -Ls https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > /usr/local/bin/sbt && \
