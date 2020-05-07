@@ -22,18 +22,20 @@ RUN mkdir /projects ${HOME} && \
 RUN apk --no-cache add openjdk11-jre-headless --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community && \
     apk --no-cache add bash curl procps nss
 
+WORKDIR /projects
+
 ENV JAVA_HOME=/usr/lib/jvm/default-jvm/ \
     SBT_VERSION="1.3.10" \
     METALS_VERSION="0.9.0"
 
 RUN mkdir -p $HOME/.cache && ln -s $HOME/.cache /root/.cache && \
     mkdir -p $HOME/.ivy2 && ln -s $HOME/.ivy2 /root/.ivy2 && \
-    mkdir -p $HOME/.sbt && ln -s $HOME/.sbt /root/.sbt
-RUN curl -Ls https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > /usr/local/bin/sbt && \
+    mkdir -p $HOME/.sbt && ln -s $HOME/.sbt /root/.sbt && \
+    curl -Ls https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > /usr/local/bin/sbt && \
     chmod 0755 /usr/local/bin/sbt && \
     sbt -sbt-version $SBT_VERSION -sbt-create about && \
-    rm -Rf ./*
-RUN curl -Ls https://raw.githubusercontent.com/coursier/coursier/gh-pages/coursier > /usr/local/bin/coursier && \
+    rm -Rf ./* && \
+    curl -Ls https://raw.githubusercontent.com/coursier/coursier/gh-pages/coursier > /usr/local/bin/coursier && \
     chmod 0755 /usr/local/bin/coursier && \
     coursier launch org.scalameta:metals_2.12:$METALS_VERSION --main scala.meta.metals.DownloadDependencies
 
