@@ -12,7 +12,6 @@ name: Build and push container
 on:
   push:
     branches:
-      - '1.8.6'
 
 jobs:
   build:
