@@ -8,7 +8,7 @@
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
 
-FROM alpine:3.10.3
+FROM alpine:3.11.6
 
 ENV HOME=/home/theia
 
@@ -26,7 +26,7 @@ WORKDIR /projects
 
 ENV JAVA_HOME=/usr/lib/jvm/default-jvm/ \
     SBT_VERSION="1.3.10" \
-    METALS_VERSION="0.9.0"
+    METALS_VERSION="0.9.0+10-f3f3e535-SNAPSHOT"
 
 RUN mkdir -p $HOME/.cache && ln -s $HOME/.cache /root/.cache && \
     mkdir -p $HOME/.ivy2 && ln -s $HOME/.ivy2 /root/.ivy2 && \
