@@ -28,8 +28,8 @@ ENV JAVA_HOME /usr/lib/jvm/default-jvm/ \
 
 RUN mkdir -p $HOME/.cache && ln -s $HOME/.cache /root/.cache && \
     mkdir -p $HOME/.ivy2 && ln -s $HOME/.ivy2 /root/.ivy2 && \
-    mkdir -p $HOME/.sbt && ln -s $HOME/.sbt /root/.sbt && \
-    curl -Ls https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > /usr/local/bin/sbt && \
+    mkdir -p $HOME/.sbt && ln -s $HOME/.sbt /root/.sbt
+RUN curl -Ls https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > /usr/local/bin/sbt && \
     chmod 0755 /usr/local/bin/sbt && \
     sbt -sbt-version $SBT_VERSION -sbt-create about && \
     rm -Rf ./* && \
