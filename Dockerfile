@@ -37,7 +37,7 @@ RUN mkdir -p $HOME/.cache && ln -s $HOME/.cache /root/.cache && \
     rm -Rf ./* && \
     curl -Ls https://raw.githubusercontent.com/coursier/coursier/gh-pages/coursier > /usr/local/bin/coursier && \
     chmod 0755 /usr/local/bin/coursier && \
-    coursier launch org.scalameta:metals_2.12:$METALS_VERSION --main scala.meta.metals.DownloadDependencies
+    coursier launch -r sonatype:snapshots org.scalameta:metals_2.12:$METALS_VERSION --main scala.meta.metals.DownloadDependencies
 
 ADD etc/entrypoint.sh /entrypoint.sh
 
