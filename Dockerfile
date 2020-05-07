@@ -32,8 +32,8 @@ RUN mkdir -p $HOME/.cache && ln -s $HOME/.cache /root/.cache && \
 RUN curl -Ls https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > /usr/local/bin/sbt && \
     chmod 0755 /usr/local/bin/sbt && \
     sbt -sbt-version $SBT_VERSION -sbt-create about && \
-    rm -Rf ./* && \
-    curl -Ls https://raw.githubusercontent.com/coursier/coursier/gh-pages/coursier > /usr/local/bin/coursier && \
+    rm -Rf ./*
+RUN curl -Ls https://raw.githubusercontent.com/coursier/coursier/gh-pages/coursier > /usr/local/bin/coursier && \
     chmod 0755 /usr/local/bin/coursier && \
     coursier launch org.scalameta:metals_2.12:$METALS_VERSION --main scala.meta.metals.DownloadDependencies
 
