@@ -22,7 +22,7 @@ RUN mkdir /projects ${HOME} && \
 RUN apk --no-cache add openjdk11-jre-headless --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community && \
     apk --no-cache add bash curl procps nss
 
-ENV JAVA_HOME /usr/lib/jvm/default-jvm/ \
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm/ \
     SBT_VERSION="1.3.10" \
     METALS_VERSION="0.9.0"
 
