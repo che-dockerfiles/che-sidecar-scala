@@ -8,12 +8,27 @@
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
 
-FROM quay.io/eclipse/che-sidecar-java:11
+FROM alpine:3.10.3
 
-ENV SBT_VERSION="1.3.10" \
-    METALS_VERSION="0.8.4"
+ENV HOME=/home/theia
 
-RUN apk --no-cache add curl bash && \
+RUN mkdir /projects ${HOME} && \
+    # Change permissions to let any arbitrary user
+    for f in "${HOME}" "/etc/passwd" "/projects"; do \
+      echo "Changing permissions on ${f}" && chgrp -R 0 ${f} && \
+      chmod -R g+rwX ${f}; \
+    done
+
+RUN apk --no-cache add openjdk11-jre-headless --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community && \
+    apk --no-cache add bash curl procps nss
+
+ENV JAVA_HOME /usr/lib/jvm/default-jvm/ \
+    SBT_VERSION="1.3.10" \
+    METALS_VERSION="0.9.0"
+
+RUN mkdir -p $HOME/.cache && ln -s $HOME/.cache /root/.cache && \
+    mkdir -p $HOME/.ivy2 && ln -s $HOME/.ivy2 /root/.ivy2 && \
+    mkdir -p $HOME/.sbt && ln -s $HOME/.sbt /root/.sbt && \
     curl -Ls https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > /usr/local/bin/sbt && \
     chmod 0755 /usr/local/bin/sbt && \
     sbt -sbt-version $SBT_VERSION -sbt-create about && \
