@@ -33,7 +33,7 @@ RUN mkdir -p $HOME/.cache && ln -s $HOME/.cache /root/.cache && \
     mkdir -p $HOME/.sbt && ln -s $HOME/.sbt /root/.sbt && \
     curl -Ls https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > /usr/local/bin/sbt && \
     chmod 0755 /usr/local/bin/sbt && \
-    sbt -sbt-version $SBT_VERSION -sbt-create about && \
+    sbt -sbt-version $SBT_VERSION -212 -sbt-create about && \
     rm -Rf ./* && \
     curl -Ls https://raw.githubusercontent.com/coursier/coursier/gh-pages/coursier > /usr/local/bin/coursier && \
     chmod 0755 /usr/local/bin/coursier && \
