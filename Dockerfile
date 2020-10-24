@@ -25,8 +25,8 @@ RUN apk --no-cache add openjdk11-jre-headless --repository=http://dl-cdn.alpinel
 WORKDIR /projects
 
 ENV JAVA_HOME=/usr/lib/jvm/default-jvm/ \
-    SBT_VERSION="1.3.10" \
-    METALS_VERSION="0.9.0+10-f3f3e535-SNAPSHOT"
+    SBT_VERSION="1.4.2" \
+    METALS_VERSION="0.9.5"
 
 RUN mkdir -p $HOME/.cache && ln -s $HOME/.cache /root/.cache && \
     mkdir -p $HOME/.ivy2 && ln -s $HOME/.ivy2 /root/.ivy2 && \
